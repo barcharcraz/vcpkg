@@ -18,4 +18,7 @@ file(RENAME ${CURRENT_PACKAGES_DIR}/share/eigen3/COPYING.README ${CURRENT_PACKAG
 
 # Copy the eigen header files
 file(COPY ${SOURCE_PATH}/Eigen/ DESTINATION ${CURRENT_PACKAGES_DIR}/include/Eigen/)
+
+#copy the signature file
+file(COPY ${SOURCE_PATH}/signature_of_eigen3_matrix_library DESTINATION ${CURRENT_PACKAGES_DIR}/include)
 vcpkg_copy_pdbs()

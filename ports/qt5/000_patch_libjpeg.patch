@@ -1,0 +1,13 @@
+diff --git "a/qtbase\\src\\gui\\image\\qjpeghandler.pri" "b/qtbase\\src\\gui\\image\\qjpeghandler.pri"
+index de40c67..67ee739 100644
+--- "a/qtbase\\src\\gui\\image\\qjpeghandler.pri"
++++ "b/qtbase\\src\\gui\\image\\qjpeghandler.pri"
+@@ -3,7 +3,7 @@ HEADERS += $$PWD/qjpeghandler_p.h
+ SOURCES += $$PWD/qjpeghandler.cpp
+ contains(QT_CONFIG, system-jpeg) {
+     msvc: \
+-        LIBS += libjpeg.lib
++        LIBS += jpeg.lib
+     else: \
+         LIBS += -ljpeg
+ } else {

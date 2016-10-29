@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Common Ambient Variables:
 #   VCPKG_ROOT_DIR = <C:\path\to\current\vcpkg>
 #   TARGET_TRIPLET is the current triplet (x86-windows, etc)
@@ -27,6 +28,7 @@ if(EXISTS ${CURRENT_BUILDTREES_DIR}/src/qt-everywhere-opensource-src-5.7.0)
     file(RENAME ${CURRENT_BUILDTREES_DIR}/src/qt-everywhere-opensource-src-5.7.0 ${CURRENT_BUILDTREES_DIR}/src/qt)
 endif()
 vcpkg_find_acquire_program(PERL)
+vcpkg_find_acquire_program(JOM)
 #vcpkg_find_acquire_program(PYTHON3)
 file(DOWNLOAD "http://www.orbitals.com/programs/py.exe" "${CURRENT_BUILDTREES_DIR}/src/python.exe"
     EXPECTED_HASH SHA512=28286bf6c510a4596c49e3100b7c45e5ccceac70404fdda436704b12874ec267617614002675f51b9f02c8b509cacee9aae60fc0c1b3e921755b0d47490a0744)
@@ -68,7 +70,7 @@ vcpkg_execute_required_process(COMMAND ${SOURCE_PATH}/configure.bat
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-dbg")
 
 message(STATUS "building debug")
-vcpkg_execute_required_process(COMMAND ${JOM_PATH}/jom.exe
+vcpkg_execute_required_process(COMMAND ${JOM}
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-dbg")
 
 # Handle copyright

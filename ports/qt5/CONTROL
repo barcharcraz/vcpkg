@@ -1,3 +1,4 @@
 Source: qt5
-Version: the qt GUI and application, version 5
-Description: zlib, harfbuzz, pcre, libjpeg-turbo
+Version: 5.7
+Build-Depends: zlib, harfbuzz, pcre, libjpeg-turbo
+Description: Qt5 application framework main components. Webengine, examples and tests not included.

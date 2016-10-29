@@ -23,17 +23,19 @@ vcpkg_download_distfile(JOM_ARCHIVE
 vcpkg_extract_source_archive(${ARCHIVE})
 vcpkg_extract_source_archive(${JOM_ARCHIVE})
 # we need to make the path shorter
-if(EXISTS ${CURRENT_BUILDTREES_DIR}/src/qt-qt-everywhere-opensource-src-5.7.0)
+if(EXISTS ${CURRENT_BUILDTREES_DIR}/src/qt-everywhere-opensource-src-5.7.0)
     file(RENAME ${CURRENT_BUILDTREES_DIR}/src/qt-everywhere-opensource-src-5.7.0 ${CURRENT_BUILDTREES_DIR}/src/qt)
 endif()
 vcpkg_find_acquire_program(PERL)
 #vcpkg_find_acquire_program(PYTHON3)
 file(DOWNLOAD "http://www.orbitals.com/programs/py.exe" "${CURRENT_BUILDTREES_DIR}/src/python.exe"
     EXPECTED_HASH SHA512=28286bf6c510a4596c49e3100b7c45e5ccceac70404fdda436704b12874ec267617614002675f51b9f02c8b509cacee9aae60fc0c1b3e921755b0d47490a0744)
-#vcpkg_apply_patches(SOURCE_PATH ${SOURCE_PATH} PATCHES 
-#    ${CMAKE_CURRENT_LIST_DIR}/000_patch_libpng.patch
-#    ${CMAKE_CURRENT_LIST_DIR}/000_patch_libjpeg.patch
-#)
+vcpkg_apply_patches(SOURCE_PATH ${SOURCE_PATH} PATCHES 
+    ${CMAKE_CURRENT_LIST_DIR}/000-fix-assimp-imports.patch
+    ${CMAKE_CURRENT_LIST_DIR}/000_patch_libpng.patch
+    ${CMAKE_CURRENT_LIST_DIR}/000_patch_libjpeg.patch
+    ${CMAKE_CURRENT_LIST_DIR}/001_fix_webengine_path.patch
+)
 set(ENV{LIB} "$ENV{LIB};${VCPKG_ROOT_DIR}/installed/${TARGET_TRIPLET}/lib")
 set(ENV{INCLUDE} "$ENV{INCLUDE};${VCPKG_ROOT_DIR}/installed/${TARGET_TRIPLET}/include")
 # need our dependencies for running moc and rcc during the build process

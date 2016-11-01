@@ -1,7 +1,7 @@
-diff --git "a/qtbase\\src\\3rdparty\\png_dependency.pri" "b/qtbase\\src\\3rdparty\\png_dependency.pri"
+diff --git "a/src\\3rdparty\\png_dependency.pri" "b/src\\3rdparty\\png_dependency.pri"
 index 78da861..8699615 100644
---- "a/qtbase\\src\\3rdparty\\png_dependency.pri"
-+++ "b/qtbase\\src\\3rdparty\\png_dependency.pri"
+--- "a/src\\3rdparty\\png_dependency.pri"
++++ "b/src\\3rdparty\\png_dependency.pri"
 @@ -1,6 +1,6 @@
  contains(QT_CONFIG, system-png) {
      unix|mingw: LIBS_PRIVATE += -lpng

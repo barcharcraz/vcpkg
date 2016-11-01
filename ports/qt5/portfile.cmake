@@ -39,11 +39,18 @@ set(ENV{INCLUDE} "$ENV{INCLUDE};${VCPKG_ROOT_DIR}/installed/${TARGET_TRIPLET}/in
 get_filename_component(PERL ${PERL} DIRECTORY)
 message(STATUS ${PYTHON3})
 message(STATUS ${PERL})
-set(ENV{PATH} "$ENV{PATH};${VCPKG_ROOT_DIR}/installed/${TARGET_TRIPLET}/bin;${PERL};${CURRENT_BUILDTREES_DIR}/src")
+set(ENV{PATH} "$ENV{PATH};${VCPKG_ROOT_DIR}/installed/${TARGET_TRIPLET}/bin;${PERL}")
 file(MAKE_DIRECTORY ${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel)
 file(MAKE_DIRECTORY ${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-dbg)
 message(STATUS "configuring debug")
-
+if(VCPKG_LIBRARY_LINKAGE STREQUAL "static")
+    set(QT_RUNTIME_LINKAGE "-static")
+else()
+    set(QT_RUNTIME_LINKAGE "-shared")
+endif()
+if(VCPKG_CRT_LINKAGE STREQUAL "static")
+    set(QT_CRT_LINKAGE "-static-runtime")
+endif()
 vcpkg_execute_required_process(COMMAND ${SOURCE_PATH}/configure.bat 
     -opensource
     -confirm-license
@@ -57,6 +64,8 @@ vcpkg_execute_required_process(COMMAND ${SOURCE_PATH}/configure.bat
     -system-harfbuzz 
     -system-sqlite
     -system-doubleconversion
+    ${QT_RUNTIME_LINKAGE}
+    ${QT_CRT_LINKAGE}
     -opengl dynamic
     -debug
     -prefix ${CURRENT_PACKAGES_DIR}

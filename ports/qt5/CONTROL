@@ -1,0 +1,4 @@
+Source: qt5-base
+Version: 5.7
+Description: qt5 base component
+Build-Depends: zlib, harfbuzz, pcre, libjpeg-turbo

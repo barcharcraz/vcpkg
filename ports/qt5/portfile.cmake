@@ -13,9 +13,9 @@ if (VCPKG_LIBRARY_LINKAGE STREQUAL static)
 endif()
 set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/src/qtbase-opensource-src-5.7.0)
 vcpkg_download_distfile(ARCHIVE
-    URLS "https://download.qt.io/archive/qt/5.7/5.7.0/submodules/qtbase-opensource-src-5.7.0.7z"
-    FILENAME "qtbase-opensource-src-5.7.0.7z"
-    SHA512 1898b0007d32b0ae6efa97178b069fe81abe93e7323788514663d1e2e9ccbeda618f4140935bdd54c7f8e1c36aa2fd5604412c469fc23dfda8c77cf09b9692ba
+    URLS "http://download.qt.io/official_releases/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.7z"
+    FILENAME "qt-5.7.0.7z"
+    SHA512 96f0b6bd221be0ed819bc9b52eefcee1774945e25b89169fa927148c1c4a2d85faf63b1d09ef5067573bda9bbf1270fce5f181d086bfe585ddbad4cd77f7f418
 )
 vcpkg_extract_source_archive(${ARCHIVE})
 vcpkg_find_acquire_program(JOM)
@@ -34,7 +34,7 @@ vcpkg_apply_patches(SOURCE_PATH ${SOURCE_PATH} PATCHES
     ${CMAKE_CURRENT_LIST_DIR}/000_patch_libjpeg.patch
 )
 
-message(STATUS "Configure Debug")
+message(STATUS "Configure ${TARGET_TRIPLET}")
 
 vcpkg_execute_required_process(COMMAND ${SOURCE_PATH}/configure.bat 
     -opensource
@@ -53,16 +53,17 @@ vcpkg_execute_required_process(COMMAND ${SOURCE_PATH}/configure.bat
     -opengl desktop
     -no-angle
     -debug-and-release
+    -skip webengine
     -prefix ${CURRENT_PACKAGES_DIR}
     ZLIB_LIBS="zlib.lib"
     LOGNAME configure
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-dbg")
 
-message(STATUS "building debug")
+message(STATUS "building ${TARGET_TRIPLET}")
 vcpkg_execute_required_process(COMMAND ${JOM}
     LOGNAME build
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-dbg")
-message(STATUS "installing debug")
+message(STATUS "installing ${TARGET_TRIPLET}")
 vcpkg_execute_required_process(COMMAND ${JOM} install
     LOGNAME install
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-dbg")

@@ -1,4 +1,0 @@
-Source: qt5
-Version: 5.7
-Build-Depends: zlib, harfbuzz, pcre, libjpeg-turbo
-Description: Qt5 application framework main components. Webengine, examples and tests not included.

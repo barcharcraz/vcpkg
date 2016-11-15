@@ -18,7 +18,8 @@ namespace vcpkg
         ERROR_DETECTED = 1
     };
 
-    static const fs::path DUMPBIN_EXE = R"(%VS140COMNTOOLS%\..\..\VC\bin\dumpbin.exe)";
+    //static const fs::path DUMPBIN_EXE = R"(%VS140COMNTOOLS%\..\..\VC\bin\dumpbin.exe)";
+	static const fs::path DUMPBIN_EXE = R"(C:\Program Files (x86)\Microsoft Visual Studio\VS15Preview\Common7\IDE\VisualCpp\Tools\MSVC\14.10.24516.00\bin\HostX64\x64\dumpbin.exe)";
 
     namespace
     {

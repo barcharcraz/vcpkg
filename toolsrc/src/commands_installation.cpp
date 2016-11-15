@@ -29,7 +29,7 @@ namespace vcpkg
 
         const fs::path ports_cmake_script_path = paths.ports_cmake;
         auto&& target_triplet = spec.target_triplet();
-        const std::wstring command = Strings::wformat(LR"("%%VS140COMNTOOLS%%..\..\VC\vcvarsall.bat" %s && cmake -DCMD=BUILD -DPORT=%s -DTARGET_TRIPLET=%s "-DCURRENT_PORT_DIR=%s/." -P "%s")",
+        const std::wstring command = Strings::wformat(LR"("C:\Program Files (x86)\Microsoft Visual Studio\VS15Preview\Common7\Tools\VsDevCmd.bat" -arch=%s && cmake -DCMD=BUILD -DPORT=%s -DTARGET_TRIPLET=%s "-DCURRENT_PORT_DIR=%s/." -P "%s")",
                                                       Strings::utf8_to_utf16(target_triplet.architecture()),
                                                       Strings::utf8_to_utf16(spec.name()),
                                                       Strings::utf8_to_utf16(target_triplet.canonical_name()),

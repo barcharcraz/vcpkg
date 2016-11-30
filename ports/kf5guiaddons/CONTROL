@@ -1,0 +1,4 @@
+Source: kf5guiaddons
+Version: 5.28.0
+Description: Addons to QtGui, part of KF5
+Build-Depends: qt5

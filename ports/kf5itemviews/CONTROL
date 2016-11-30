@@ -1,0 +1,4 @@
+Source: kf5itemviews
+Version: 5.28.0
+Description: Widget addons for Qt Model/View, part of KF5
+Build-Depends: qt5

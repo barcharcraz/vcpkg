@@ -1,0 +1,4 @@
+Source: kf5doctools
+Version: 5.28.0
+Description: KDE Documentation Tools, part of KF5
+Build-Depends: qt5, kf5i18n, gettext, libxml2, libxslt

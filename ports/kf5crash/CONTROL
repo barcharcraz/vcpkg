@@ -1,0 +1,4 @@
+Source: kf5crash
+Version: 5.28.0
+Description: The KDE crash library, for graceful crashes, part of KF5
+Build-Depends: qt5, kf5windowsystem

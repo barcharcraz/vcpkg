@@ -1,0 +1,4 @@
+Source: kf5dnssd
+Version: 5.28.0
+Description: Abstraction to system DNSSD features, part of KF5
+Build-Depends: qt5

@@ -1,0 +1,4 @@
+Source: kf5i18n
+Version: 5.28.0
+Description: The KDE internationalization library, part of KF5
+Build-Depends: qt5, gettext

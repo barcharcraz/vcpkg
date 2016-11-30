@@ -1,0 +1,4 @@
+Source: kf5idletime
+Version: 5.28.0
+Description: Monitoring user activity, part of KF5
+Build-Depends: qt5

@@ -1,0 +1,4 @@
+Source: kf5archive
+Version: 5.28.0
+Description: The KArchive archiving lib, part of KF5
+Build-Depends: zlib, qt5

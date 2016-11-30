@@ -1,0 +1,4 @@
+Source: kf5attica
+Version: 5.28.0
+Description: The KDE attica library - an implementation of the Open Collaboration Service, part of KF5
+Build-Depends: qt5

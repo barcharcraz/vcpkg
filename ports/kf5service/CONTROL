@@ -1,0 +1,4 @@
+Source: kf5service
+Version: 5.28.0
+Description: The KDE services library, kservice, part of KF5
+Build-Depends: qt5, kf5crash, gettext

@@ -1,0 +1,4 @@
+Source: kf5coreaddons
+Version: 5.28.0
+Description: The kcoreaddons addons for qt5core, part of KF5
+Build-Depends: qt5

@@ -1,0 +1,4 @@
+Source: kf5dbusaddons
+Version: 5.28.0
+Description: The kdebusaddons library, part of KF5
+Build-Depends: qt5

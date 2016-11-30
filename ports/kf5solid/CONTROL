@@ -1,0 +1,4 @@
+Source: kf5solid
+Version: 5.28.0
+Description: The KDE Solid library for hardware integration, part of KF5
+Build-Depends: qt5

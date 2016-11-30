@@ -1,0 +1,4 @@
+Source: kde-frameworks
+Version: 5.28.0
+Description: KDE Frameworks meta package
+Build-Depends: kf5archive, kf5attica, kf5config, kf5coreaddons, kf5crash, kf5dbusaddons, kf5dnssd, kf5doctools, kf5guiaddons, kf5i18n, kf5idletime, kf5service, kf5solid, kf5windowsystem

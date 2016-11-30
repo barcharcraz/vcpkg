@@ -1,0 +1,4 @@
+Source: kf5widgetsaddons
+Version: 5.28.0
+Description: Addons to QtWidgets, part of KF5
+Build-Depends: qt5

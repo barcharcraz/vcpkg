@@ -141,7 +141,7 @@ endif()
 file(WRITE ${CURRENT_PACKAGES_DIR}/include/libxml2/libxml/xmlexports.h "${XMLEXPORTS_H}")
 
 # Remove tools and debug include directories
-file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/tools)
+#file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/tools)
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/tools)
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/include)
 

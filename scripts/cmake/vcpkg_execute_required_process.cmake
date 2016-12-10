@@ -4,7 +4,7 @@ function(vcpkg_execute_required_process)
     #debug_message("vcpkg_execute_required_process(${vcpkg_execute_required_process_COMMAND})")
     execute_process(
         COMMAND ${vcpkg_execute_required_process_COMMAND}
-        OUTPUT_FILE ${CURRENT_BUILDTREES_DIR}/${vcpkg_execute_required_process_LOGNAME}-out.log
+        #OUTPUT_FILE ${CURRENT_BUILDTREES_DIR}/${vcpkg_execute_required_process_LOGNAME}-out.log
         ERROR_FILE ${CURRENT_BUILDTREES_DIR}/${vcpkg_execute_required_process_LOGNAME}-err.log
         RESULT_VARIABLE error_code
         WORKING_DIRECTORY ${vcpkg_execute_required_process_WORKING_DIRECTORY})

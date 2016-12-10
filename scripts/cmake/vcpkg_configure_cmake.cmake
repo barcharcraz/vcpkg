@@ -10,8 +10,8 @@ function(vcpkg_configure_cmake)
         set(GENERATOR "Visual Studio 14 2015 Win64")
     elseif(VCPKG_CMAKE_SYSTEM_NAME STREQUAL "WindowsStore" AND TRIPLET_SYSTEM_ARCH MATCHES "arm")
         set(GENERATOR "Visual Studio 14 2015 ARM")
-    # elseif(NOT vcpkg_configure_cmake_NINJA MATCHES "NOTFOUND")
-    #     set(GENERATOR "Ninja")
+    elseif(NOT vcpkg_configure_cmake_NINJA MATCHES "NOTFOUND")
+        set(GENERATOR "Ninja")
     elseif(TRIPLET_SYSTEM_ARCH MATCHES "x86")
         set(GENERATOR "Visual Studio 14 2015")
     elseif(TRIPLET_SYSTEM_ARCH MATCHES "x64")
@@ -71,7 +71,7 @@ function(vcpkg_configure_cmake)
     vcpkg_execute_required_process(
         COMMAND ${CMAKE_COMMAND} ${_csc_SOURCE_PATH} ${_csc_OPTIONS} ${_csc_OPTIONS_RELEASE}
             -G ${GENERATOR}
-            -DCMAKE_VERBOSE_MAKEFILE=ON
+            -DCMAKE_VERBOSE_MAKEFILE=OFF
             -DCMAKE_BUILD_TYPE=Release
             -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TRIPLET_FILE}
             -DCMAKE_PREFIX_PATH=${CURRENT_INSTALLED_DIR}
@@ -86,7 +86,7 @@ function(vcpkg_configure_cmake)
     vcpkg_execute_required_process(
         COMMAND ${CMAKE_COMMAND} ${_csc_SOURCE_PATH} ${_csc_OPTIONS} ${_csc_OPTIONS_DEBUG}
             -G ${GENERATOR}
-            -DCMAKE_VERBOSE_MAKEFILE=ON
+            -DCMAKE_VERBOSE_MAKEFILE=OFF
             -DCMAKE_BUILD_TYPE=Debug
             -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TRIPLET_FILE}
             -DCMAKE_PREFIX_PATH=${CURRENT_INSTALLED_DIR}/debug\\\\\\\;${CURRENT_INSTALLED_DIR}

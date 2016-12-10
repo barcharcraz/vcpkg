@@ -4,6 +4,7 @@
 #include <functional>
 #include "vcpkg_System.h"
 #include "coff_file_reader.h"
+#include "vcpkg_tool_paths.h"
 #include "BuildInfo.h"
 #include <regex>
 
@@ -14,8 +15,8 @@ namespace vcpkg::PostBuildLint
         SUCCESS = 0,
         ERROR_DETECTED = 1
     };
-
-    static const fs::path DUMPBIN_EXE = R"(%VS140COMNTOOLS%\..\..\VC\bin\dumpbin.exe)";
+	
+    static const fs::path DUMPBIN_EXE = R"(dumpbin.exe)";
 
     static lint_status check_for_files_in_include_directory(const fs::path& package_dir)
     {
@@ -190,7 +191,8 @@ namespace vcpkg::PostBuildLint
         std::vector<fs::path> dlls_with_no_exports;
         for (const fs::path& dll : dlls)
         {
-            const std::wstring cmd_line = Strings::wformat(LR"("%s" /exports "%s")", DUMPBIN_EXE.native(), dll.native());
+			const fs::path toolchain_path = toolset_env_path();
+            const std::wstring cmd_line = Strings::wformat(LR"("%s" && "%s" /exports "%s")", toolchain_path.generic_wstring(), DUMPBIN_EXE.native(), dll.native());
             System::exit_code_and_output ec_data = System::cmd_execute_and_capture_output(cmd_line);
             Checks::check_exit(ec_data.exit_code == 0, "Running command:\n   %s\n failed", Strings::utf16_to_utf8(cmd_line));
 
@@ -219,9 +221,10 @@ namespace vcpkg::PostBuildLint
         }
 
         std::vector<fs::path> dlls_with_improper_uwp_bit;
+		fs::path toolchain_path = toolset_env_path();
         for (const fs::path& dll : dlls)
         {
-            const std::wstring cmd_line = Strings::wformat(LR"("%s" /headers "%s")", DUMPBIN_EXE.native(), dll.native());
+            const std::wstring cmd_line = Strings::wformat(LR"("%s" && "%s" /headers "%s")", toolchain_path.generic_wstring(), DUMPBIN_EXE.native(), dll.native());
             System::exit_code_and_output ec_data = System::cmd_execute_and_capture_output(cmd_line);
             Checks::check_exit(ec_data.exit_code == 0, "Running command:\n   %s\n failed", Strings::utf16_to_utf8(cmd_line));
 
@@ -465,10 +468,10 @@ namespace vcpkg::PostBuildLint
         bad_build_types.erase(std::remove(bad_build_types.begin(), bad_build_types.end(), expected_build_type), bad_build_types.end());
 
         std::vector<BuildType_and_file> libs_with_invalid_crt;
-
+		fs::path toolchain_path = toolset_env_path();
         for (const fs::path& lib : libs)
         {
-            const std::wstring cmd_line = Strings::wformat(LR"("%s" /directives "%s")", DUMPBIN_EXE.native(), lib.native());
+            const std::wstring cmd_line = Strings::wformat(LR"("%s", "%s" /directives "%s")", toolchain_path.generic_wstring(), DUMPBIN_EXE.native(), lib.native());
             System::exit_code_and_output ec_data = System::cmd_execute_and_capture_output(cmd_line);
             Checks::check_exit(ec_data.exit_code == 0, "Running command:\n   %s\n failed", Strings::utf16_to_utf8(cmd_line));
 
@@ -510,10 +513,10 @@ namespace vcpkg::PostBuildLint
         const std::vector<OutdatedDynamicCrt>& outdated_crts = OutdatedDynamicCrt::values();
 
         std::vector<OutdatedDynamicCrt_and_file> dlls_with_outdated_crt;
-
+		fs::path toolchain_path = toolset_env_path();
         for (const fs::path& dll : dlls)
         {
-            const std::wstring cmd_line = Strings::wformat(LR"("%s" /dependents "%s")", DUMPBIN_EXE.native(), dll.native());
+            const std::wstring cmd_line = Strings::wformat(LR"("%s" && "%s" /dependents "%s")", toolchain_path.generic_wstring(), DUMPBIN_EXE.native(), dll.native());
             System::exit_code_and_output ec_data = System::cmd_execute_and_capture_output(cmd_line);
             Checks::check_exit(ec_data.exit_code == 0, "Running command:\n   %s\n failed", Strings::utf16_to_utf8(cmd_line));
 

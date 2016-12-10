@@ -180,7 +180,7 @@ int wmain(const int argc, const wchar_t* const* const argv)
 {
     if (argc == 0)
         std::abort();
-
+	CoInitializeEx(nullptr, COINIT_MULTITHREADED);
     std::cout.sync_with_stdio(false);
     std::cout.imbue(std::locale::classic());
 
@@ -245,4 +245,5 @@ int wmain(const int argc, const wchar_t* const* const argv)
         std::cerr << argv[x] << "|\n";
     std::cerr
         << "\n";
+	CoUninitialize();
 }

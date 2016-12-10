@@ -10,6 +10,7 @@
 #include "vcpkg_Input.h"
 #include "vcpkg_Maps.h"
 #include "vcpkg_info.h"
+#include "vcpkg_tool_paths.h"
 
 namespace vcpkg
 {
@@ -31,7 +32,9 @@ namespace vcpkg
         const triplet& target_triplet = spec.target_triplet();
 
         const fs::path ports_cmake_script_path = paths.ports_cmake;
-        const std::wstring command = Strings::wformat(LR"("%%VS140COMNTOOLS%%..\..\VC\vcvarsall.bat" %s && cmake -DCMD=BUILD -DPORT=%s -DTARGET_TRIPLET=%s "-DCURRENT_PORT_DIR=%s/." -P "%s")",
+		const fs::path env_script_path = toolset_env_path();
+        const std::wstring command = Strings::wformat(LR"("%s" -arch=%s && cmake -DCMD=BUILD -DPORT=%s -DTARGET_TRIPLET=%s "-DCURRENT_PORT_DIR=%s/." -P "%s")",
+													  env_script_path.generic_wstring(),
                                                       Strings::utf8_to_utf16(target_triplet.architecture()),
                                                       Strings::utf8_to_utf16(source_paragraph.name),
                                                       Strings::utf8_to_utf16(target_triplet.canonical_name()),

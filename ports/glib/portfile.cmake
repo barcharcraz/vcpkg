@@ -10,9 +10,6 @@ if (NOT VCPKG_CMAKE_SYSTEM_NAME)
     vcpkg_check_linkage(ONLY_DYNAMIC_LIBRARY ONLY_DYNAMIC_CRT)
 endif()
 
-<<<<<<< HEAD
-set(GLIB_VERSION 2.52.3)
-=======
 include(vcpkg_common_functions)
 if(CMAKE_HOST_WIN32)
  vcpkg_acquire_msys(MSYS_ROOT PACKAGES "mingw-w64-i686-pkg-config")
@@ -20,7 +17,6 @@ if(CMAKE_HOST_WIN32)
 endif()
 
 set(GLIB_VERSION 2.60.2)
->>>>>>> work on making glib use pkg-config and meson
 vcpkg_download_distfile(ARCHIVE
     URLS "https://ftp.gnome.org/pub/gnome/sources/glib/2.60/glib-${GLIB_VERSION}.tar.xz"
     FILENAME "glib-${GLIB_VERSION}.tar.xz"
@@ -30,13 +26,6 @@ vcpkg_extract_source_archive_ex(
     OUT_SOURCE_PATH SOURCE_PATH
     ARCHIVE ${ARCHIVE}
     REF ${GLIB_VERSION}
-<<<<<<< HEAD
-    PATCHES
-        use-libiconv-on-windows.patch
-        arm64-defines.patch
-        fix-arm-builds.patch
-=======
->>>>>>> work on making glib use pkg-config and meson
 )
 
 # file(COPY ${CMAKE_CURRENT_LIST_DIR}/CMakeLists.txt DESTINATION ${SOURCE_PATH})
@@ -69,11 +58,6 @@ vcpkg_configure_meson(
 # vcpkg_copy_pdbs()
 # vcpkg_copy_tool_dependencies(${CURRENT_PACKAGES_DIR}/tools/glib)
 
-<<<<<<< HEAD
-file(COPY ${SOURCE_PATH}/COPYING DESTINATION ${CURRENT_PACKAGES_DIR}/share/glib)
-file(RENAME ${CURRENT_PACKAGES_DIR}/share/glib/COPYING ${CURRENT_PACKAGES_DIR}/share/glib/copyright)
-=======
 # file(COPY ${SOURCE_PATH}/COPYING DESTINATION ${CURRENT_PACKAGES_DIR}/share/glib)
 # file(RENAME ${CURRENT_PACKAGES_DIR}/share/glib/COPYING ${CURRENT_PACKAGES_DIR}/share/glib/copyright)
 
->>>>>>> work on making glib use pkg-config and meson
